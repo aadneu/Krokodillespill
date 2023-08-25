@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>KROKODILLESPILL</h1>
+    <h2 id="poengHer">0</h2>
+    <img src="/img/krokodille2.jpg" alt=""> <br>
+    <br>
+    <div id="random1"></div>er
+    <input id="penger" type="text" placeholder="Svar">
+    <div id="random2"></div>
+    <button onclick="submitAnswer()">Submit</button>
+    <button onclick="resetGame()">Reset</button>
+    <!-- <button onclick="plus1()">Legg til poeng</button>
+    <button onclick="down1()">Trekk fra poeng</button> -->
+
+    <script>
+        window.onload = numbers;
+
+        var pointsGained = 0
+        var poengHer = document.getElementById('poengHer');
+
+        function plus1() {
+            pointsGained++;
+            poengHer.innerHTML = pointsGained
+
+        }
+        function minus1() {
+            pointsGained--;
+            poengHer.innerHTML = pointsGained
+
+        }
+        function submitAnswer() {
+            let upper = document.getElementById('random1').innerHTML
+            let lower = document.getElementById('random2').innerHTML
+            let input = document.getElementById('penger').value
+
+            document.getElementById('penger').value = '';
+           
+            if (upper === lower && input === '=') {
+                plus1();
+            } else if (upper < lower && input === '<') {
+                plus1();
+
+            } else if (upper > lower && input === '>') {
+                plus1();
+            } else {
+                minus1();
+            }
+            numbers();
+        }
+        function resetGame(){
+            pointsGained = 0;
+            poengHer.innerHTML = pointsGained
+            numbers();
+        }
+        function numbers() {
+            numbergenerator1();
+            numbergenerator2();
+        }
+        function numbergenerator1() {
+            document.getElementById('random1').innerHTML = Math.floor(Math.random() * 10) + 1
+        }
+        function numbergenerator2() {
+            document.getElementById('random2').innerHTML = Math.floor(Math.random() * 10) + 1
+        }
+
+    </script>
+</body>
+
+</html>
